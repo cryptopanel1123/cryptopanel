@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from demo.tophivetheme.com/cryptorio/Dark/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Dec 2021 06:10:30 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cryptorio - Cryptocurrency Trading Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/icons.css">
+	<link rel="stylesheet" href="css/ui.css">
+</head>
+<body class="crypt-dark">
+	<header>
+		<div class="container-full-width">
+			<div class="crypt-header">
+				<div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-5">
+						<div class="row">
+							<div class="col-xs-2">
+								<a href="#exchange.html">
+								<div class="crypt-logo"><img src="images/logo.png" alt="">
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block d-lg-block">
+						<ul class="crypt-heading-menu fright">
+							<li><a href="exchange.html"></a></li>
+						</ul>
+					</div>
+					<i class="menu-toggle pe-7s-menu d-xs-block d-sm-block d-md-none d-sm-none"></i>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="cryptorio-forms cryptorio-forms-dark text-center pt-5 pb-5">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="logo-image">
+                    </div>
+                    <h3 class="p-4">Register</h3>
+                    <div class="cryptorio-main-form">
+                        <form action="php/register.php" class="text-left" method="post">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your email" style="color:white">
+                            <label for="password">Password</label>
+                            <input type="password" id="pass1" name="pass1" placeholder="6-20 letters and numbers" style="color:white" pattern="(?=^.{6,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title='The password length must be 6 to 20 characters and it must contain one or more uppercase,lowercase & numeric characters.'>
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="pass2" name="pass2" placeholder="6-20 letters and numbers" style="color:white" pattern="(?=^.{6,}$)(?=.*\d)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title='The password length must be 6 to 20 characters and it must contain one or more uppercase,lowercase & numeric characters.'>
+                            <div class="my-1">
+                              <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="terms-agree" name="terms">
+                                <label class="custom-control-label" for="terms-agree">I agree to the terms of services</label>
+                              </div>
+                            </div>
+                            <input type="submit" id="register" value="SignUp" class="crypt-button-red-full">
+                        </form>
+                        <p class="float-left"><a href="login.html">Log In</a></p>
+                        <p class="float-right"><a href="forgot.html">Recover Password</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+	<footer>
+		
+	</footer>
+    <script src="js/bundle.js"></script>
+    <script src="extjs/validate/register.js "></script>
+</body>
+
+</html>

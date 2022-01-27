@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cryptorio - Cryptocurrency Trading Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/icons.css">
+	<link rel="stylesheet" href="css/ui.css">
+</head>
+<body class="crypt-dark">
+	<header>
+		<div class="container-full-width">
+			<div class="crypt-header">
+				<div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-5">
+						<div class="row">
+							<div class="col-xs-2">
+								<a href="#exchange.html">
+								<div class="crypt-logo"><img src="images/logo.png" alt="">
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block d-lg-block">
+						<ul class="crypt-heading-menu fright">
+							<li><a href="exchange.html"></a></li>
+						</ul>
+					</div>
+					<i class="menu-toggle pe-7s-menu d-xs-block d-sm-block d-md-none d-sm-none"></i>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="cryptorio-forms cryptorio-forms-dark text-center pt-5 pb-5">
+                    <div class="logo">
+                        <img src="images/logo.png" alt="logo-image">
+                    </div>
+                    <h3 class="p-4">Welcome To Login</h3>
+                    <div class="cryptorio-main-form">
+                        <form action="php/login.php" class="text-left" method="post">
+                            <label for="email">Account Name</label>
+                            <input type="email" id="email" name="email" placeholder="Your email" style="color:white">
+                            <label for="password">Password</label>
+                            <input type="password" id="pass1" name="pass1" placeholder="Please Input Your Password" style="color:white">
+
+                            <input type="submit" id="login" value="Log In" class="crypt-button-red-full">
+                        </form>
+                        <p class="float-left"><a href="register.html">Sign Up</a></p>
+                        <p class="float-right"><a href="forgot.html">Forgot Password</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+	
+	
+	<footer>
+		
+	</footer>
+    <script src="js/bundle.js"></script>
+	<script src="extjs/validate/login.js"></script>
+</body>
+
+</html>
