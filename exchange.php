@@ -826,7 +826,7 @@
                                             <input type="text" name="buyTotal" id="buyTotal" class="form-control" readonly>
                                             <div class="input-group-append"> <span class="input-group-text"><?php echo $coin;?></span> </div>
                                         </div>
-                                        <input type="hidden" id="assetsBuy" name="assets" value=''>
+                                        <input type="hidden" id="assetsBuy" name="assets" value=<?php echo $result['assets']?>>
                                         <!-- <div>
                                             <p>Fee: <span class="fright">100%x0.2=0.02</span></p>
                                         </div>
@@ -862,7 +862,7 @@
                                             <input type="text" name="sellTotal" id="sellTotal" class="form-control" readonly>
                                             <div class="input-group-append"> <span class="input-group-text">USDT</span> </div>
                                         </div>
-                                        <input type="hidden" id="assetsSell" name="assets" value=''>
+                                        <input type="hidden" id="assetsSell" name="assets" value=<?php echo $result['assets']?>>
                                         <!-- <div>
                                             <p>Fee: <span class="fright">100%x0.2=0.02</span></p>
                                         </div>

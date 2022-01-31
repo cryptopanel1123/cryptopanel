@@ -79,15 +79,23 @@ buybtn.addEventListener('click',function(e){
     if(buytotal.value=='' || buyamount.value=='' || buyprice.value==''){
         e.preventDefault();
     }else{
-        assets.USDT=assets.USDT-buyamount.value;
-        document.getElementById('assetsBuy').value=JSON.stringify(assets);
+        if(window.confirm("Are you sure you want to place this order?")){
+            assets.USDT=assets.USDT-buyamount.value;
+            document.getElementById('assetsBuy').value=JSON.stringify(assets);
+        }else{
+            e.preventDefault();
+        }
     }
 });
 sellbtn.addEventListener('click',function(e){
     if(selltotal.value=='' || sellamount.value=='' || sellprice.value==''){
         e.preventDefault();
     }else{
-        assets[coin]=assets[coin]-sellamount.value;
-        document.getElementById('assetsSell').value=JSON.stringify(assets);
+        if(window.confirm("Are you sure you want to place this order?")){
+            assets[coin]=assets[coin]-sellamount.value;
+            document.getElementById('assetsSell').value=JSON.stringify(assets);
+        }else{
+            e.preventDefault();
+        }
     }
 });

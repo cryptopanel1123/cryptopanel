@@ -21,7 +21,7 @@ for(let i in orders){
                 <td class="crypt-up">${orders[i].price}</td>
                 <td class="crypt-up">${orders[i].amount} USDT</td>
                 <td class="crypt-up">${orders[i].total} BTC</td>
-                <td class="crypt-box-menu menu-red"><a href="php/cancelorder.php?orderid=${orders[i].id}">Cancel Order</a></td>
+                <td class="crypt-box-menu menu-red"><a onclick="return confirm('Are you sure you want to cancel this order?');" href="php/cancelorder.php?orderid=${orders[i].id}">Cancel Order</a></td>
                 </tr>`;
     }
 }
