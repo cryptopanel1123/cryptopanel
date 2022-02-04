@@ -35,7 +35,7 @@
 <head class="crypt-dark">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cryptorio - Cryptocurrency Trading Dashboard</title>
+    <title>Cryptopanel - Cryptocurrency Trading Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">

@@ -6,14 +6,9 @@
     set_time_limit(0);
     foreach($string as $coin){
         $response=file_get_contents("https://api.binance.com/api/v3/ticker/price?symbol=$coin");
-        echo $response."!".$cur_time=date('h:i:s').mysqli_error($con)."<br>";
         $response=json_decode($response,JSON_OBJECT_AS_ARRAY);
         $price=$response['price'];
-        mysqli_query($con,"update prices set $coin = $price,last_update = '$cur_time' where id = 1;");
+        mysqli_query($con,"update prices set $coin = $price,last_update = '".date('h:i:s')."' where id = 1;");
     }
-      echo "<br>####################################<br>";
-      flush();
-      ob_flush();
   }
-  
 ?>

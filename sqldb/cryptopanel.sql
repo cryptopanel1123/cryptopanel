@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 09:54 AM
+-- Generation Time: Jan 19, 2022 at 05:03 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -112,35 +112,7 @@ CREATE TABLE `portfolio` (
 --
 
 INSERT INTO `portfolio` (`id`, `uid`, `assets`) VALUES
-(16, 74, '{\"BTC\":1,\"ETH\":1,\"BNB\":1,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":5000}');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `prices`
---
-
-CREATE TABLE `prices` (
-  `id` int(1) NOT NULL,
-  `BTCUSDT` double(18,8) NOT NULL,
-  `ETHUSDT` double(18,8) NOT NULL,
-  `BNBUSDT` double(18,8) NOT NULL,
-  `XRPUSDT` double(18,8) NOT NULL,
-  `SOLUSDT` double(18,8) NOT NULL,
-  `DOTUSDT` double(18,8) NOT NULL,
-  `ADAUSDT` double(18,8) NOT NULL,
-  `LUNAUSDT` double(18,8) NOT NULL,
-  `SHIBUSDT` double(18,8) NOT NULL,
-  `DOGEUSDT` double(18,8) NOT NULL,
-  `last_update` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `prices`
---
-
-INSERT INTO `prices` (`id`, `BTCUSDT`, `ETHUSDT`, `BNBUSDT`, `XRPUSDT`, `SOLUSDT`, `DOTUSDT`, `ADAUSDT`, `LUNAUSDT`, `SHIBUSDT`, `DOGEUSDT`, `last_update`) VALUES
-(1, 38218.70000000, 2613.63000000, 385.50000000, 0.62140000, 96.61000000, 18.85000000, 1.07200000, 50.89000000, 0.00002208, 0.14300000, '01:33:25');
+(9, 66, '{\"BTC\":1,\"ETH\":1,\"BNB\":1,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":5000}');
 
 -- --------------------------------------------------------
 
@@ -161,7 +133,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `pass`, `registered_at`, `isRestricted`) VALUES
-(74, 'darkexodus1123@gmail.com', '4b2ac83f954ecc67da649442683d8eac25135cf834615275c10b0d85233f41c5', '2022-01-31 12:48:14', 0);
+(66, 'darkexodus1123@gmail.com', '945f17d50fedde4a0c1eb670a19d3743948e94840c6880f03140b98eebbc0acd', '2022-01-19 21:24:33', 0);
 
 --
 -- Indexes for dumped tables
@@ -194,12 +166,6 @@ ALTER TABLE `portfolio`
   ADD KEY `user_portfolio` (`uid`);
 
 --
--- Indexes for table `prices`
---
-ALTER TABLE `prices`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -226,19 +192,19 @@ ALTER TABLE `dashboard`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Constraints for dumped tables
