@@ -97,7 +97,7 @@
                             <li><a href="market-overview.html">Overview</a></li>
                             <li><a href="marketcap.html">Market Cap</a></li>
                             <li><a href="trading.html">Trading</a></li>
-                            <li><a href="withdrawl.html">Wallet</a></li>
+                            <li><a href="withdrawl.php">Wallet</a></li>
                             <li class="crypt-box-menu menu-red"><a href="php/logout.php">Logout</a></li>
                         </ul>
                     </div>
@@ -814,7 +814,7 @@
             <div class="col-xl-5">
                 <div class="crypt-boxed-area">
                     <h6 class="crypt-bg-head"><b class="crypt-up">BUY</b> / <b class="crypt-down">SELL</b></h6>
-                    <div class="row no-gutters">
+                    <div class="row no-gutters" style="height:45vh">
                         <div class="col-md-6">
                             <div class="crypt-buy-sell-form">
                                 <p>Buy <span class="crypt-up"><?php echo $coin;?></span> <span class="fright">Available: <b class="crypt-up"><?php echo $assets['USDT'];?> USDT</b></span></p>
@@ -902,7 +902,7 @@
                                 <a href="<?php echo"exchange.php?coin=$coin&coinx=$coinx"?>" class="fright" style="color:#3898ff">Update orders? last updated: <?php echo date("H:i:s")?></a>
                             </ul>
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="active-orders" style="height:30vh">
+                                <div role="tabpanel" class="tab-pane active" id="active-orders" style="height:45vh">
                                     <table class="table table-striped">
                                         <thead >
                                             <tr>
@@ -920,7 +920,7 @@
                                     </table>
                                     <!-- <div class="no-orders text-center p-160"><img src="images/empty.svg" alt="no-orders"></div> -->
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="closed-orders" style="height:30vh">
+                                <div role="tabpanel" class="tab-pane" id="closed-orders" style="height:45vh">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -939,7 +939,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="balance" style="height:30vh">
+                                <div role="tabpanel" class="tab-pane" id="balance" style="height:45vh">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
