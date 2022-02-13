@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+    date_default_timezone_set("Asia/Kolkata");
     session_start();
     if(!isset($_SESSION['id'])){
         header("location:login.html");
@@ -25,8 +26,16 @@
         }
         $result1=mysqli_query($con,"select * from orders where uid='$id';");
         if($result1!=null){
+            $orders=null;
             while($row=mysqli_fetch_array($result1)){
                 $orders[]=$row;
+            }
+        }
+        $result2=mysqli_query($con,"select * from orders_history where uid='$id';");
+        if($result2!=null){
+            $ordersHistory=null;
+            while($row1=mysqli_fetch_array($result2)){
+                $ordersHistory[]=$row1;
             }
         }
     }
@@ -50,6 +59,7 @@
         <input type="hidden" id="assetcoin" value="<?php echo $coin?>">
         <input type="hidden" id="userassets" value=<?php echo $result['assets']?>>
         <input type="hidden" id="orders" value='<?php echo json_encode($orders,JSON_FORCE_OBJECT)?>'>
+        <input type="hidden" id="ordersHistory" value='<?php echo json_encode($ordersHistory,JSON_FORCE_OBJECT)?>'>
     </form>
     <header>
         <div class="container-full-width">
@@ -889,9 +899,10 @@
                                 <li role="presentation"><a href="#active-orders" class="active" data-toggle="tab">Active Orders</a></li>
                                 <li role="presentation"><a href="#closed-orders" data-toggle="tab">Closed Orders</a></li>
                                 <li role="presentation"><a href="#balance" data-toggle="tab">Balance</a></li>
+                                <a href="<?php echo"exchange.php?coin=$coin&coinx=$coinx"?>" class="fright" style="color:#3898ff">Update orders? last updated: <?php echo date("H:i:s")?></a>
                             </ul>
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="active-orders">
+                                <div role="tabpanel" class="tab-pane active" id="active-orders" style="height:30vh">
                                     <table class="table table-striped">
                                         <thead >
                                             <tr>
@@ -909,139 +920,47 @@
                                     </table>
                                     <!-- <div class="no-orders text-center p-160"><img src="images/empty.svg" alt="no-orders"></div> -->
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="closed-orders">
+                                <div role="tabpanel" class="tab-pane" id="closed-orders" style="height:30vh">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Time</th>
+                                                <th scope="col">Coin</th>
+                                                <th scope="col">Placed Time</th>
+                                                <th scope="col">Resolved Time</th>
                                                 <th scope="col">Buy/sell</th>
                                                 <th scope="col">Price USDT</th>
-                                                <th scope="col">Amount BPS</th>
-                                                <th scope="col">Dealt BPS</th>
-                                                <th scope="col">Operation</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">Total</th>
+                                                <th scope="col">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="closed-orders-body">
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-up">Buy</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-down">Sell</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-up">Buy</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-down">Sell</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-up">Buy</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-down">Sell</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-up">Buy</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-down">Sell</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.000056</td>
-                                                <td class="crypt-down">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>22:35:59</th>
-                                                <td class="crypt-up">Buy</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.000056</td>
-                                                <td class="crypt-up">0.0003456</td>
-                                                <td>5.3424984</td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
-                                <div role="tabpanel" class="tab-pane" id="balance">
+                                <div role="tabpanel" class="tab-pane" id="balance" style="height:30vh">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Currency</th>
                                                 <th scope="col">Amount</th>
-                                                <th scope="col">Volume</th>
+                                                <th scope="col">Last price</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th>BTC</th>
-                                                <td>0.0000564</td>
-                                                <td>6.6768876</td>
-                                            </tr>
-                                            <tr>
-                                                <th>ETC</th>
-                                                <td>0.000056</td>
-                                                <td>5.3424984</td>
-                                            </tr>
-                                            <tr>
-                                                <th>LTC</th>
-                                                <td>0.0000234</td>
-                                                <td>4.3456600</td>
-                                            </tr>
-                                            <tr>
-                                                <th>XMR</th>
-                                                <td>0.0000234</td>
-                                                <td>4.3456600</td>
-                                            </tr>
-                                            <tr>
-                                                <th>BIT</th>
-                                                <td>0.0000567</td>
-                                                <td>4.3456600</td>
-                                            </tr>
-                                            <tr>
-                                                <th>EGF</th>
-                                                <td>0.0000234</td>
-                                                <td>4.3456600</td>
-                                            </tr>
-                                            <tr>
-                                                <th>EER</th>
-                                                <td>0.0000567</td>
-                                                <td>4.3456600</td>
-                                            </tr>
+                                        <?php
+                                            $balance=json_decode($result['assets'],JSON_OBJECT_AS_ARRAY);
+                                            unset($balance['USDT']);
+                                            $prices=mysqli_fetch_array(mysqli_query($con,"select * from prices where id=1"),MYSQLI_ASSOC);
+                                            foreach($balance as $bcoin => $bvalue){
+                                                echo "<tr>
+                                                    <td>$bcoin</td>
+                                                    <td>$bvalue</td>
+                                                    <td>{$prices[$bcoin."USDT"]}</td>
+                                                    </tr>";
+                                            }
+                                        ?>    
                                         </tbody>
                                     </table>
                                 </div>

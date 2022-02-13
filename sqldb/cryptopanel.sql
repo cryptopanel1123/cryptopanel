@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2022 at 05:03 PM
+-- Generation Time: Feb 13, 2022 at 08:37 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -88,12 +88,52 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `coin` varchar(20) NOT NULL,
-  `price` double NOT NULL,
-  `amount` double NOT NULL,
-  `total` double NOT NULL,
+  `price` double(18,8) NOT NULL,
+  `amount` double(18,8) NOT NULL,
+  `total` double(18,8) NOT NULL,
   `buy_sell` tinyint(1) NOT NULL,
-  `placed_at` datetime NOT NULL DEFAULT current_timestamp()
+  `placed_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `incline` tinyint(1) NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_history`
+--
+
+CREATE TABLE `orders_history` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `coin` varchar(20) NOT NULL,
+  `price` double(18,8) NOT NULL,
+  `amount` double(18,8) NOT NULL,
+  `total` double(18,8) NOT NULL,
+  `buy_sell` tinyint(1) NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `placed_at` datetime NOT NULL,
+  `resolved_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders_history`
+--
+
+INSERT INTO `orders_history` (`id`, `uid`, `coin`, `price`, `amount`, `total`, `buy_sell`, `status`, `placed_at`, `resolved_at`) VALUES
+(1, 75, 'BTC', 41500.00000000, 10.00000000, 0.00024096, 0, 'SUCCESS', '2022-02-05 16:14:27', '2022-02-05 16:15:27'),
+(2, 75, 'BTC', 41515.00000000, 10.00000000, 0.00024088, 0, 'SUCCESS', '2022-02-05 16:14:44', '2022-02-05 16:15:27'),
+(3, 75, 'BTC', 41520.00000000, 10.00000000, 0.00024085, 0, 'SUCCESS', '2022-02-05 16:15:02', '2022-02-05 16:15:53'),
+(4, 75, 'BTC', 30000.00000000, 10.00000000, 0.00033333, 0, 'FAILED', '2022-02-04 16:18:04', '2022-02-05 16:18:26'),
+(5, 75, 'BTC', 41500.00000000, 0.10000000, 4150.00000000, 1, 'SUCCESS', '2022-02-05 16:22:17', '2022-02-05 16:22:35'),
+(6, 75, 'BTC', 41760.00000000, 10.00000000, 0.00023946, 0, 'SUCCESS', '2022-02-05 21:29:06', '2022-02-05 21:30:41'),
+(7, 75, 'BNB', 413.30000000, 10.00000000, 0.02419550, 0, 'SUCCESS', '2022-02-05 22:59:44', '2022-02-05 23:00:53'),
+(8, 75, 'BTC', 41400.00000000, 11.00000000, 0.00026570, 0, 'SUCCESS', '2022-02-05 23:02:03', '2022-02-05 23:02:45'),
+(9, 75, 'BTC', 41400.00000000, 11.00000000, 0.00026570, 0, 'SUCCESS', '2022-02-05 23:02:03', '2022-02-05 23:02:45'),
+(10, 75, 'BTC', 43750.00000000, 10.00000000, 0.00022857, 0, 'SUCCESS', '2022-02-10 19:13:45', '2022-02-10 19:14:38'),
+(11, 75, 'BTC', 43800.00000000, 10.00000000, 0.00022831, 0, 'SUCCESS', '2022-02-10 19:13:21', '2022-02-10 19:14:45'),
+(12, 75, 'BTC', 43900.00000000, 10.00000000, 0.00022779, 0, 'FAILED', '2022-02-09 19:12:13', '2022-02-10 19:15:27'),
+(13, 75, 'BTC', 43850.00000000, 1000.00000000, 0.02280502, 0, 'SUCCESS', '2022-02-10 19:13:07', '2022-02-10 19:16:11'),
+(14, 75, 'BTC', 43700.00000000, 10.00000000, 0.00022883, 0, 'SUCCESS', '2022-02-10 19:14:33', '2022-02-10 19:17:06');
 
 -- --------------------------------------------------------
 
@@ -112,7 +152,35 @@ CREATE TABLE `portfolio` (
 --
 
 INSERT INTO `portfolio` (`id`, `uid`, `assets`) VALUES
-(9, 66, '{\"BTC\":1,\"ETH\":1,\"BNB\":1,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":5000}');
+(17, 75, '{\"BTC\":0.9247185799999998,\"ETH\":1,\"BNB\":1.0241955,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":8039}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prices`
+--
+
+CREATE TABLE `prices` (
+  `id` int(1) NOT NULL,
+  `BTCUSDT` double(18,8) NOT NULL,
+  `ETHUSDT` double(18,8) NOT NULL,
+  `BNBUSDT` double(18,8) NOT NULL,
+  `XRPUSDT` double(18,8) NOT NULL,
+  `SOLUSDT` double(18,8) NOT NULL,
+  `DOTUSDT` double(18,8) NOT NULL,
+  `ADAUSDT` double(18,8) NOT NULL,
+  `LUNAUSDT` double(18,8) NOT NULL,
+  `SHIBUSDT` double(18,8) NOT NULL,
+  `DOGEUSDT` double(18,8) NOT NULL,
+  `last_update` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `prices`
+--
+
+INSERT INTO `prices` (`id`, `BTCUSDT`, `ETHUSDT`, `BNBUSDT`, `XRPUSDT`, `SOLUSDT`, `DOTUSDT`, `ADAUSDT`, `LUNAUSDT`, `SHIBUSDT`, `DOGEUSDT`, `last_update`) VALUES
+(1, 43724.91000000, 3129.31000000, 414.50000000, 0.85400000, 108.25000000, 21.07000000, 1.16500000, 55.26000000, 0.00003138, 0.15310000, '07:25:38');
 
 -- --------------------------------------------------------
 
@@ -133,7 +201,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `pass`, `registered_at`, `isRestricted`) VALUES
-(66, 'darkexodus1123@gmail.com', '945f17d50fedde4a0c1eb670a19d3743948e94840c6880f03140b98eebbc0acd', '2022-01-19 21:24:33', 0);
+(75, 'darkexodus1123@gmail.com', '4b2ac83f954ecc67da649442683d8eac25135cf834615275c10b0d85233f41c5', '2022-02-04 23:09:41', 0);
 
 --
 -- Indexes for dumped tables
@@ -159,11 +227,24 @@ ALTER TABLE `orders`
   ADD KEY `user_limit` (`uid`);
 
 --
+-- Indexes for table `orders_history`
+--
+ALTER TABLE `orders_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_limit` (`uid`);
+
+--
 -- Indexes for table `portfolio`
 --
 ALTER TABLE `portfolio`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_portfolio` (`uid`);
+
+--
+-- Indexes for table `prices`
+--
+ALTER TABLE `prices`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -192,19 +273,25 @@ ALTER TABLE `dashboard`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+
+--
+-- AUTO_INCREMENT for table `orders_history`
+--
+ALTER TABLE `orders_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- Constraints for dumped tables
@@ -215,6 +302,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `user_limit` FOREIGN KEY (`uid`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `orders_history`
+--
+ALTER TABLE `orders_history`
+  ADD CONSTRAINT `user_orders_history` FOREIGN KEY (`uid`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `portfolio`
