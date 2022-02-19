@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2022 at 08:37 AM
+-- Generation Time: Feb 19, 2022 at 05:18 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -152,7 +152,7 @@ CREATE TABLE `portfolio` (
 --
 
 INSERT INTO `portfolio` (`id`, `uid`, `assets`) VALUES
-(17, 75, '{\"BTC\":0.9247185799999998,\"ETH\":1,\"BNB\":1.0241955,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":8039}');
+(17, 75, '{\"BTC\":0.9247185799999998,\"ETH\":1,\"BNB\":1.0241955,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":371039}');
 
 -- --------------------------------------------------------
 

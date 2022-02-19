@@ -358,12 +358,12 @@ jQuery(document).ready(function () {
     jQuery(this).parents().find('.crypt-tab-content .tab-pane' + x).addClass('active');
   });
 
-  jQuery(document).on('click', '.crypt-coin-select a', function (e) {
-    e.preventDefault();
-    var div = jQuery(this).attr('href');
-    jQuery('.crypt-dash-withdraw').removeClass('d-block').addClass('d-none');
-    jQuery(div).removeClass('d-none').addClass('d-block');
-  });
+  // jQuery(document).on('click', '.crypt-coin-select a', function (e) {
+  //   e.preventDefault();
+  //   var div = jQuery(this).attr('href');
+  //   jQuery('.crypt-dash-withdraw').removeClass('d-block').addClass('d-none');
+  //   jQuery(div).removeClass('d-none').addClass('d-block');
+  // });
   var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
 
   jQuery('ul.crypt-heading-menu > li > a').each(function () {
