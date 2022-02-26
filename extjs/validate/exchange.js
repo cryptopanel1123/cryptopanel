@@ -13,7 +13,7 @@ let sellamount=document.getElementById("sellAmount");
 let selltotal=document.getElementById("sellTotal");
 
 buyprice.addEventListener('change',function(e){
-    if(buyprice.value<=0){
+    if(buyprice.value<=0 ||buyprice.value>9999999){
         buyprice.value='';
     }
 });
@@ -23,7 +23,7 @@ buyamount.addEventListener('change',function(e){
     }
 });
 sellprice.addEventListener('change',function(e){
-    if(sellprice.value<=0){
+    if(sellprice.value<=0 || sellprice.value>9999999){
         sellprice.value='';
     }
 });

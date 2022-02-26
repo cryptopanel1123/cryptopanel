@@ -4,17 +4,13 @@
     $con=mysqli_connect('localhost','root','');
     if($con){
         mysqli_select_db($con,'cryptopanel');
-        $result=mysqli_query($con,"select * from user where email = '$email';");
+        $result=mysqli_query($con,"select id,pass from admin where email = '$email';");
         $row=mysqli_fetch_array($result);
         if($row!=null){
-            if($row['isRestricted']=="1")
-            { 
-                header("location:display.php?title=RESTRICTED USER!&msg=");
-            }
-            else if(hash('sha256',$pass1)==$row['pass']){
+            if($pass1==$row['pass']){
                 session_start();
-                $_SESSION['id']=$row['id'];
-                header("location:../exchange.php");
+                $_SESSION['aid']=$row['id'];
+                header("location:../admin.php");
             }else{
                 header("location:display.php?title=INCORRECT PASSWORD!&msg=");
             }

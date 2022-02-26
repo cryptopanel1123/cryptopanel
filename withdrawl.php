@@ -6,6 +6,18 @@
     if(!isset($_SESSION['id'])){
         header("location:login.html");
     }
+    $id=$_SESSION['id'];
+    $con=mysqli_connect('localhost','root','','cryptopanel');
+    if($con){
+        $result=mysqli_query($con,"select * from portfolio where uid='$id';");
+        $user=mysqli_query($con,"SELECT * from user where id='$id'");
+        $res = mysqli_fetch_array($user);
+        if($result!=null){
+        $result=mysqli_fetch_array($result);
+        }else{
+            echo mysqli_error($con);
+        }
+    }
 ?>
 <head>
 	<meta charset="UTF-8">
@@ -18,6 +30,10 @@
 	<link rel="stylesheet" href="css/ui.css">
 </head>
 <body class="crypt-dark">
+		
+	<?php
+        $balance=json_decode($result['assets'],JSON_OBJECT_AS_ARRAY);
+	?>
 	<header>
 		<div class="container-full-width">
 			<div class="crypt-header">
@@ -37,9 +53,9 @@
 					<div class="col-xl-8 col-lg-8 col-md-8 d-none d-md-block d-lg-block">
 						<ul class="crypt-heading-menu fright">
 							<li><a href="exchange.php">Exchange</a></li>
-							<li><a href="market-overview.html">Overview</a></li>
+							<!-- <li><a href="market-overview.html">Overview</a></li>
 							<li><a href="marketcap.html">Market Cap</a></li>
-							<li><a href="trading.html">Trading</a></li>
+							<li><a href="trading.html">Trading</a></li> -->
                             <li class="crypt-box-menu menu-red"><a href="php/logout.php">Logout</a></li>
 						</ul>
 					</div>
@@ -96,37 +112,52 @@
 					<ul class="crypt-big-list crypt-coin-select">
 						<li>
 							<a href="#bitcoin">
-								<img src="images/coins/btc.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Bitcoin <p class="fright"><b>$456568</b></p>
+								<img src="images/coins/btc.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Bitcoin <p class="fright"><b><?php echo $balance['BTC']?></b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="images/coins/eth.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Ethrium <p class="fright"><b>$456568</b></p>
+								<img src="images/coins/eth.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Ethereum <p class="fright"><b><?php echo $balance['ETH']?></b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="images/coins/ltc.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Litecoin <p class="fright crypt-down"><b>$456568</b></p>
+								<img src="images/coins/bnb.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> BNB <p class="fright"><b><?php echo $balance['BNB']?></b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="images/coins/xrp.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> XRP <p class="fright"><b>$456568</b></p>
+								<img src="images/coins/xrp.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> XRP <p class="fright"><b><?php echo $balance['XRP']?></b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="images/coins/monero.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Monero <p class="fright"><b>$456568</b></p>
+								<img src="images/coins/solana.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Solona <p class="fright"><b><?php echo $balance['SOL']?></b></p>
 							</a>
 						</li>
 						<li>
-							<a href="!">
-								<img src="images/coins/zil.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Zilliqua <p class="fright"><b>$456568</b></p>
+							<a href="#">
+								<img src="images/coins/dot.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> PolkaDot <p class="fright"><b><?php echo $balance['DOT']?></b></p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="images/coins/ada.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Cardano <p class="fright"><b><?php echo $balance['ADA']?></b></p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="images/coins/luna.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Terra <p class="fright"><b><?php echo $balance['LUNA']?></b></p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="images/coins/shib.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Shiba Inu <p class="fright"><b><?php echo $balance['SHIB']?></b></p>
 							</a>
 						</li>
 						<li>
 							<a href="php/../withdrawl.php">
-								<img src="images/coins/dash.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Dash <p class="fright"><b>$456568</b></p>
+								<img src="images/coins/doge.png" width="25" class="crypt-market-cap-logo pr-2" alt="coin"> Dogecoin <p class="fright"><b><?php echo $balance['DOGE']?></b></p>
 							</a>
 						</li>
 					</ul>
@@ -136,17 +167,19 @@
 				<div class="crypt-dash-withdraw mt-3 d-block">
 					<div class="crypt-withdraw-heading">
 						<div class="row">
-							<div class="col-md-3">
-								<p><b>1 BTC</b></p>
-								<p class="crypt-up"><b>$3,483.59 USDT (0.28%) </b></p>
+							<div class="col-md-2">
+								<b><p>USER:</p><p><?php echo $res['email'];?></p></b>
+								<input type="hidden" id="user_email" value="<?php echo $res['email'];?>">
 							</div>
-							<div class="col-md-5">
-								<i class="pe-7s-lock icon-big"></i> 
-								<p><b>Locked: $ 0.00</b></p>
+							<div class="col-md-3"> 
+								<p><b></b></p>
 							</div>
 							<div class="col-md-4">
-								<p><b>Total:</b></p>
-								<p class="crypt-up"><b> $ 23454.00</b></p>
+								<p><b>Total USDT:</b></p>
+								<p class="crypt-up"><b>$ <?php echo $balance['USDT']?></b></p>
+							</div>
+							<div class="col-md-1">
+								<p><b><a class="crypt-down" id="delete_user" href="php/delete_account.php">DELETE ACCOUNT</a></b></p>
 							</div>
 						</div>
 					</div>
@@ -244,16 +277,17 @@
 								<div class="tab-pane fade" id="v-pills-zilliqua-btc-withdrawl" role="tabpanel" aria-labelledby="v-pills-zilliqua-btc-withdrawl-tab">
 									<h4 class="crypt-down">Wire bank transfer</h4>
 							  		<p><i class="pe-7s-info"></i> Standard bank transfer will be made up to 2 workdays</p>
-							  		<form>
-							  			<div class="input-group mb-3">
-										  	<input type="text" placeholder="Amount" class="form-control" name="amount">
+							  		<form name="withdraw" action="php/initiate_withdraw.php" method="post" onsubmit="return validateForm()">
+									  <input type="hidden" name="userassets" id="userassets" value=<?php echo $result['assets']?>>	
+									  <div class="input-group mb-3">
+										  	<input type="number" placeholder="Amount" class="form-control" name="amount" step="any">
 										  	<div class="input-group-append">
 										    	<span class="input-group-text">USD</span>
 										  	</div>
 										</div>
 							  			<div class="input-group mb-3">
-										  	<input type="text" placeholder="Bank Account Number" class="form-control" name="bank-account">
-										  	<div class="input-group-append">
+										  	<input type="number" placeholder="Bank Account Number" class="form-control" name="bank-account">
+										  	<!--<div class="input-group-append">
 											    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Other Address</button>
 											    <div class="dropdown-menu">
 											      <a class="dropdown-item" href="#">234235234</a>
@@ -261,62 +295,75 @@
 											      <a class="dropdown-item" href="#">234234234234</a>
 											    </div>
 											  </div>
+											--> 
 										</div>
 										<div class="form-group">
-										    <input type="text" class="form-control" placeholder="Name" name="name">
+										    <input type="text" pattern="[a-zA-Z\s]+" class="form-control" placeholder="Name" name="name">
 										</div>
 										<div class="form-group">
-										    <input type="text" class="form-control" placeholder="Swift Code" name="swift">
+										    <input type="text" class="form-control" placeholder="Swift Code 8-11 digits" name="swift" pattern=".{8,11}">
 										</div>
 										<div class="form-group">
 										    <div class="form-group">
-											    <select class="form-control">
-													<option>India</option>
-											      <!-- <option>Country</option>
+											    <select class="form-control" name="country">
+													<!-- <option>India</option>
+											      <option>Country</option> -->
 											      <option>United States</option>
-											      <option>Japan</option>
+											      <!-- <option>Japan</option>
 											      <option>Korea</option>
 											      <option>China</option> -->
 											    </select>
 											</div>
 										</div>
-										<div class="form-group">
+									<!--	<div class="form-group">
 										    <div class="form-check">
 										      	<input class="form-check-input" type="checkbox" id="recipient-btc">
 										      	<label class="form-check-label" for="recipient-btc">
 										        Add To recipient
 										      	</label>
 										    </div>
-										</div>
-										<a href="#" class="crypt-button-red-full">Initiate Withdraw</a>
+										</div> 
+									-->	
+
+
+										<input class="crypt-button-red-full" name="withdraw" type="submit" value="Initiate Withdraw">
 							  		</form>
 								</div>
 							  	<div class="tab-pane fade" id="v-pills-zilliqua-btc-history" role="tabpanel" aria-labelledby="v-pills-zilliqua-btc-history-tab">
 							  		<table class="table table-striped">
+									  
 									  	<thead>
 										    <tr>
-										      <th scope="col">Time</th>
+											  <th scope="col">Time</th>
 										      <th scope="col">Amount</th>
-										      <th scope="col">Currency</th>
+										      <th scope="col">Account Name</th>
+										      <th scope="col">Account Number</th>
+											  <th scope="col">STATUS</th>
 										    </tr>
 									  	</thead>
 									  	<tbody>
-										    <tr>
-										      <th scope="row">22:35:59</th>
-										      <td class="crypt-down">0.000056</td>
-										      <td>BTC</td>
-										    </tr>
-										    <tr>
-										      <th scope="row">22:35:59</th>
-										      <td>0.0000564</td>
-										      <td>ETH</td>
-										    </tr>
-										    <tr>
-										      <th scope="row">22:35:59</th>
-										      <td>0.0000234</td>
-										      <td>XHO</td>
-										    </tr>
-									  	</tbody>
+										  <?php $history = mysqli_query($con,"SELECT * FROM withdraw where uid=$id");
+									  while($res = mysqli_fetch_array($history)) {         
+										echo "<tr>";
+										echo "<td>".$res['time']."</td>";
+										echo "<td>".$res['amt']."</td>";
+										echo "<td>".$res['name']."</td>";
+										echo "<td>".$res['bnk_num']."</td>"; 
+										if($res['status']=='PENDING')
+										{
+										  ?><td style="color:#3898ff">PENDING</td><?php
+										} 
+										else if($res['status']=='CANCELED')
+											{
+											  ?><td class="crypt-down">CANCELED</td><?php
+											} 
+										else
+										{
+										  ?><td class="crypt-up">APPROVED</td><?php
+										}	
+									  }
+									  ?>
+								  	</tbody>
 									</table>
 							  	</div>
 							</div>
@@ -357,5 +404,63 @@
     <script src="js/bundle.js"></script>
 	<script src="extjs/payment.js"></script>
 	<script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
+	<script>
+		function validateForm()
+		{
+			if(!confirm("Are you sure you want to withdraw(cancelation not available once placed)"))
+			{
+				return false;
+			}
+			let assets=document.getElementById("userassets");
+    			assets=JSON.parse(assets.value);
+    			console.table(assets);
+
+  			let amt = document.forms["withdraw"]["amount"].value;
+  			let bnk_num=document.forms["withdraw"]["bank-account"].value;
+  			let name=document.forms["withdraw"]["name"].value;
+  			let scode=document.forms["withdraw"]["swift"].value;
+
+  				if(amt>assets.USDT)
+  				{
+  					alert("Insufficient Balance");
+  					return false;
+   				}
+
+				if(amt <= 0)
+				{
+					alert("Amount should be greater than 0");
+					return false;
+				}
+
+				if(bnk_num.length <9 || bnk_num.length >18)
+				{
+					alert("Bank Number should be between 9-18 digits");
+					return false;
+				}
+
+  				if (amt == "" || bnk_num == "" || name == "" || scode == "") 
+  				{
+    				alert("Fields cann't be empty");
+    				return false;
+  				}
+				  assets.USDT-=amt;
+				  assets=JSON.stringify(assets)
+				  document.forms["withdraw"]["userassets"].value=assets
+		}
+		let delete_elem = document.getElementById('delete_user');
+		delete_elem.addEventListener('click',(e)=>{
+			if(!confirm("Are you sure you want to delete the account?")){
+				e.preventDefault();
+				return
+			}
+			let email1 = document.getElementById("user_email").value;
+			let email2 = prompt("Confirm your email to delete the account permanently!");
+			if(email1!=email2){
+				alert("INCORRECT EMAIL!");
+				e.preventDefault();
+				return
+			}
+		})
+	</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2022 at 05:18 AM
+-- Generation Time: Feb 26, 2022 at 03:57 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -29,10 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `name` varchar(191) NOT NULL,
-  `email` varchar(191) NOT NULL,
-  `password` varchar(191) NOT NULL
+  `email` varchar(64) NOT NULL,
+  `pass` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `pass`) VALUES
+(1, 'admin@admin.com', 'admin1123');
 
 -- --------------------------------------------------------
 
@@ -81,6 +87,31 @@ CREATE TABLE `dashboard` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `date` datetime DEFAULT current_timestamp(),
+  `title` varchar(50) DEFAULT NULL,
+  `content` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `date`, `title`, `content`) VALUES
+(50, '2022-02-26 00:00:00', 'a', 'aa'),
+(51, '2022-02-26 00:00:00', 'aaa', 'a45yhy664h45h45h'),
+(52, '2022-02-26 09:05:02', 'aa', 'a'),
+(53, '2022-02-26 09:05:51', 'hdh', 'jdj'),
+(54, '2022-02-26 09:27:13', 'ergergtrb', 'erghsdbdfbsdbsdfgdsfgeb\r\nfg\r\nsgbgrb'),
+(55, '2022-02-26 09:27:26', 'ererwg', '12344566');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -95,6 +126,14 @@ CREATE TABLE `orders` (
   `placed_at` datetime NOT NULL DEFAULT current_timestamp(),
   `incline` tinyint(1) NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `uid`, `coin`, `price`, `amount`, `total`, `buy_sell`, `placed_at`, `incline`) VALUES
+(112, 75, 'BTC', 300.00000000, 0.10000000, 30.00000000, 1, '2022-02-26 18:08:49', 2),
+(116, 75, 'BTC', 123456789.00000000, 12.00000000, 0.00000010, 0, '2022-02-26 20:17:10', 2);
 
 -- --------------------------------------------------------
 
@@ -152,7 +191,7 @@ CREATE TABLE `portfolio` (
 --
 
 INSERT INTO `portfolio` (`id`, `uid`, `assets`) VALUES
-(17, 75, '{\"BTC\":0.9247185799999998,\"ETH\":1,\"BNB\":1.0241955,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":371039}');
+(17, 75, '{\"BTC\":0.8247185799999999,\"ETH\":1,\"BNB\":1.0241955,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":455027}');
 
 -- --------------------------------------------------------
 
@@ -180,7 +219,25 @@ CREATE TABLE `prices` (
 --
 
 INSERT INTO `prices` (`id`, `BTCUSDT`, `ETHUSDT`, `BNBUSDT`, `XRPUSDT`, `SOLUSDT`, `DOTUSDT`, `ADAUSDT`, `LUNAUSDT`, `SHIBUSDT`, `DOGEUSDT`, `last_update`) VALUES
-(1, 43724.91000000, 3129.31000000, 414.50000000, 0.85400000, 108.25000000, 21.07000000, 1.16500000, 55.26000000, 0.00003138, 0.15310000, '07:25:38');
+(1, 39337.99000000, 2807.55000000, 379.30000000, 0.77570000, 93.15000000, 18.13000000, 0.92000000, 73.93000000, 0.00002510, 0.12900000, '10:38:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `revenue_stats`
+--
+
+CREATE TABLE `revenue_stats` (
+  `id` int(1) NOT NULL DEFAULT 1,
+  `revenue` double NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `revenue_stats`
+--
+
+INSERT INTO `revenue_stats` (`id`, `revenue`) VALUES
+(1, 500.03);
 
 -- --------------------------------------------------------
 
@@ -203,6 +260,34 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `pass`, `registered_at`, `isRestricted`) VALUES
 (75, 'darkexodus1123@gmail.com', '4b2ac83f954ecc67da649442683d8eac25135cf834615275c10b0d85233f41c5', '2022-02-04 23:09:41', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `withdraw`
+--
+
+CREATE TABLE `withdraw` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) DEFAULT NULL,
+  `amt` int(10) DEFAULT NULL,
+  `bnk_num` int(18) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `scode` varchar(11) DEFAULT NULL,
+  `country` varchar(20) DEFAULT NULL,
+  `status` varchar(8) NOT NULL DEFAULT 'PENDING',
+  `time` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `withdraw`
+--
+
+INSERT INTO `withdraw` (`id`, `uid`, `amt`, `bnk_num`, `name`, `scode`, `country`, `status`, `time`) VALUES
+(44, 75, 4000, 123456789, 'DARK EXODUS', '12345678', 'India', 'APPROVED', '2022-02-26 09:26:37'),
+(45, 75, 5000, 123456789, 'Tanmau dffv', '123456789', 'India', 'CANCELED', '2022-02-26 10:34:11'),
+(46, 75, 400000, 123456789, 'Tanmay Trivedi', '12345678', 'India', 'CANCELED', '2022-02-26 17:56:25'),
+(47, 75, 5000, 123456789, 'Tanmay triv', '123456789', 'India', 'PENDING', '2022-02-26 18:31:30');
+
 --
 -- Indexes for dumped tables
 --
@@ -217,6 +302,12 @@ ALTER TABLE `admin`
 -- Indexes for table `dashboard`
 --
 ALTER TABLE `dashboard`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -247,11 +338,24 @@ ALTER TABLE `prices`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `revenue_stats`
+--
+ALTER TABLE `revenue_stats`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `umail` (`email`);
+
+--
+-- Indexes for table `withdraw`
+--
+ALTER TABLE `withdraw`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_withdraw_restrict` (`uid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -261,7 +365,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `dashboard`
@@ -270,10 +374,16 @@ ALTER TABLE `dashboard`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `orders_history`
@@ -285,13 +395,19 @@ ALTER TABLE `orders_history`
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
+--
+-- AUTO_INCREMENT for table `withdraw`
+--
+ALTER TABLE `withdraw`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
@@ -301,19 +417,25 @@ ALTER TABLE `user`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `user_limit` FOREIGN KEY (`uid`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `user_orders` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders_history`
 --
 ALTER TABLE `orders_history`
-  ADD CONSTRAINT `user_orders_history` FOREIGN KEY (`uid`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `user_orders_history` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  ADD CONSTRAINT `user_portfolio` FOREIGN KEY (`uid`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `user_portfolio` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `withdraw`
+--
+ALTER TABLE `withdraw`
+  ADD CONSTRAINT `user_withdraw_restrict` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
