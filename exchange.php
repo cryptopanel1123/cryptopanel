@@ -108,6 +108,12 @@
     <div class="container-fluid">
         <div class="row sm-gutters">
             <!-- ########## -->
+            <?php
+                $coin_stats_string=array('BTC'=>'bitcoin','ETH'=>'ethereum','BNB'=>'binancecoin','XRP'=>'ripple','SOL'=>'solana','DOT'=>'polkadot','ADA'=>'cardano','LUNA'=>'terra-luna','SHIB'=>'shiba-inu','DOGE'=>'dogecoin');
+                $fetch_coin=$coin_stats_string[$coin];
+                $response=file_get_contents("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=$fetch_coin&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h");
+                $response=json_decode($response,JSON_OBJECT_AS_ARRAY);
+            ?>
             <!-- ########## -->
             <div class="col-md-6 col-lg-6 col-xl-9 col-xxl-10">
                 <div class="crypt-gross-market-cap mt-4">
@@ -115,26 +121,32 @@
                         <div class="col-3 col-sm-6 col-md-6 col-lg-6">
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6">
-                                    <p>84568.85</p>
-                                    <p>≈$8378.6850 USDT</p>
+                                    <p>Market capitalisation</p>
+                                    <p class="crypt-up"><?php echo '$'.$response[0]['market_cap']?></p>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <p>24H Change</p>
-                                    <p class="crypt-down">-0.0234230 -3.35%</p>
+                                    <?php
+                                    if($response[0]['price_change_24h']<0){
+                                        echo "<p class='crypt-down'>".$response[0]['price_change_24h']." ".$response[0]['price_change_percentage_24h']."%</p>";
+                                    }else{
+                                        echo "<p class='crypt-up'>".$response[0]['price_change_24h']." ".$response[0]['price_change_percentage_24h']."%</p>";
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3 col-sm-2 col-md-3 col-lg-2">
                             <p>24H High</p>
-                            <p class="crypt-up">0.435453</p>
+                            <p class="crypt-up"><?php echo '$'.$response[0]['high_24h']?></p>
                         </div>
                         <div class="col-3 col-sm-2 col-md-3 col-lg-2">
                             <p>24H Low</p>
-                            <p class="crypt-down">0.09945</p>
+                            <p class="crypt-down"><?php echo '$'.$response[0]['low_24h']?></p>
                         </div>
                         <div class="col-3 col-sm-2 col-md-3 col-lg-2">
-                            <p>24H Volume</p>
-                            <p>12.33445</p>
+                            <p>Market cap rank</p>
+                            <p class="crypt-up">&nbsp;<?php echo $response[0]['market_cap_rank']?></p>
                         </div>
                     </div>
                 </div>

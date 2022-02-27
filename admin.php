@@ -102,7 +102,7 @@ date_default_timezone_set("Asia/Kolkata");
                             <div class="row">
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <p>Total revenue</p>
-                                    <p><?php
+                                    <p class="crypt-up"><?php
                                         $order=mysqli_query($con,"select revenue from revenue_stats where id=1;");
                                         $order=mysqli_fetch_array($order);
                                         echo "$".$order[0];
@@ -110,7 +110,7 @@ date_default_timezone_set("Asia/Kolkata");
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6">
                                     <p>Active orders</p>
-                                    <p><?php
+                                    <p class="crypt-up"><?php
                                         $order=mysqli_query($con,"select count(*) from orders;");
                                         $order=mysqli_fetch_array($order);
                                         echo $order[0];
@@ -120,7 +120,7 @@ date_default_timezone_set("Asia/Kolkata");
                         </div>
                         <div class="col-3 col-sm-2 col-md-3 col-lg-2">
                             <p>Pending requests</p>
-                            <p><?php
+                            <p class="crypt-down"><?php
                                         $order=mysqli_query($con,"select count(*) from withdraw where status='PENDING';");
                                         $order=mysqli_fetch_array($order);
                                         echo $order[0];
