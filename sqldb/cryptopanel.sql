@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2022 at 04:56 AM
+-- Generation Time: Mar 25, 2022 at 08:15 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -48,6 +48,7 @@ INSERT INTO `admin` (`id`, `email`, `pass`) VALUES
 
 CREATE TABLE `news` (
   `id` int(11) NOT NULL,
+  `aid` int(11) NOT NULL,
   `date` datetime DEFAULT current_timestamp(),
   `title` varchar(50) DEFAULT NULL,
   `content` varchar(2000) DEFAULT NULL
@@ -57,11 +58,11 @@ CREATE TABLE `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `date`, `title`, `content`) VALUES
-(56, '2022-03-21 15:22:04', 'What is DeFi, how does it work?', 'It\'s an umbrella term for the part of the crypto universe that is geared toward building a new, internet-native financial system, using blockchains to replace traditional intermediaries and trust mechanisms.'),
-(57, '2022-03-21 15:23:14', 'Eco-friendly cryptos to watch out for this year.  ', 'With the exponential growth of assets, the crypto space has come a significant way from being considered environmentally dangerous, even if there is more to do.'),
-(58, '2022-03-21 15:25:51', 'Crypto Price Prediction: Huge Bitcoin Forecast Rev', 'One veteran commodities investor turned bitcoin bull has predicted the bitcoin price could soar to $200,000 in just five years—pointing to a \"compounding effect\" that could drive momentum'),
-(59, '2022-03-21 15:27:20', 'Biden’s Crypto Executive Order: Breakthrough Or Wo', 'The crypto world heaved a sigh of relief with President Biden’s new executive order on the industry. Those positive feelings are misplaced.');
+INSERT INTO `news` (`id`, `aid`, `date`, `title`, `content`) VALUES
+(56, 1, '2022-03-21 15:22:04', 'What is DeFi, how does it work?', 'It\'s an umbrella term for the part of the crypto universe that is geared toward building a new, internet-native financial system, using blockchains to replace traditional intermediaries and trust mechanisms.'),
+(57, 1, '2022-03-21 15:23:14', 'Eco-friendly cryptos to watch out for this year.  ', 'With the exponential growth of assets, the crypto space has come a significant way from being considered environmentally dangerous, even if there is more to do.'),
+(58, 1, '2022-03-21 15:25:51', 'Crypto Price Prediction: Huge Bitcoin Forecast Rev', 'One veteran commodities investor turned bitcoin bull has predicted the bitcoin price could soar to $200,000 in just five years—pointing to a \"compounding effect\" that could drive momentum'),
+(59, 1, '2022-03-21 15:27:20', 'Biden’s Crypto Executive Order: Breakthrough Or Wo', 'The crypto world heaved a sigh of relief with President Biden’s new executive order on the industry. Those positive feelings are misplaced.');
 
 -- --------------------------------------------------------
 
@@ -182,6 +183,7 @@ INSERT INTO `prices` (`id`, `BTCUSDT`, `ETHUSDT`, `BNBUSDT`, `XRPUSDT`, `SOLUSDT
 
 CREATE TABLE `revenue_stats` (
   `id` int(1) NOT NULL DEFAULT 1,
+  `aid` int(11) NOT NULL DEFAULT 1,
   `revenue` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -189,8 +191,8 @@ CREATE TABLE `revenue_stats` (
 -- Dumping data for table `revenue_stats`
 --
 
-INSERT INTO `revenue_stats` (`id`, `revenue`) VALUES
-(1, 800.03);
+INSERT INTO `revenue_stats` (`id`, `aid`, `revenue`) VALUES
+(1, 1, 800.03);
 
 -- --------------------------------------------------------
 
@@ -254,7 +256,8 @@ ALTER TABLE `admin`
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_news` (`aid`);
 
 --
 -- Indexes for table `orders`
@@ -287,7 +290,8 @@ ALTER TABLE `prices`
 -- Indexes for table `revenue_stats`
 --
 ALTER TABLE `revenue_stats`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_revenue` (`aid`);
 
 --
 -- Indexes for table `user`
@@ -317,7 +321,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -354,6 +358,12 @@ ALTER TABLE `withdraw`
 --
 
 --
+-- Constraints for table `news`
+--
+ALTER TABLE `news`
+  ADD CONSTRAINT `admin_news` FOREIGN KEY (`aid`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
@@ -370,6 +380,12 @@ ALTER TABLE `orders_history`
 --
 ALTER TABLE `portfolio`
   ADD CONSTRAINT `user_portfolio` FOREIGN KEY (`uid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `revenue_stats`
+--
+ALTER TABLE `revenue_stats`
+  ADD CONSTRAINT `admin_revenue` FOREIGN KEY (`aid`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `withdraw`
