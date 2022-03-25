@@ -230,7 +230,7 @@ date_default_timezone_set("Asia/Kolkata");
                                              echo "<td>".$res['bnk_num']."</td>"; 
                                              echo "<td>".$res['scode']."</td>";
                                              echo "<td class='crypt-box-menu menu-red'><a onclick='return confirm(\"Are you sure you want to approve this withdraw request?\");' href='php/approvewithdraw.php?orderid=${id} '>APPROVE</a></td>";
-                                             echo "<td class='crypt-box-menu menu-red'><a onclick='return confirm(\"Are you sure you want to cancel this withdraw request?\");' href='php/cancelwithdraw.php?orderid=${id} '>CANCEL</a></td>";
+                                             echo "<td class='crypt-box-menu menu-red'><a onclick='return confirm(\"Are you sure you want to cancel this withdraw request?\");' href='php/cancelwithdraw.php?orderid=${id} '>REJECT</a></td>";
                                              
                                             }
                                             ?>

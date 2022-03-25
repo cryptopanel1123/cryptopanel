@@ -13,7 +13,7 @@ if($con)
 		$assets['USDT']+=$result['amt'];
 		$assets=json_encode($assets);
 		mysqli_query($con,"update portfolio set assets = '$assets' where uid=$userid");
-	   mysqli_query($con,"UPDATE withdraw set status='CANCELED' where id=$orderid;");
+	   mysqli_query($con,"UPDATE withdraw set status='REJECTED' where id=$orderid;");
 	   header("location:../admin.php");
 }
 ?>

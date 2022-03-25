@@ -353,9 +353,9 @@
 										{
 										  ?><td style="color:#3898ff">PENDING</td><?php
 										} 
-										else if($res['status']=='CANCELED')
+										else if($res['status']=='REJECTED')
 											{
-											  ?><td class="crypt-down">CANCELED</td><?php
+											  ?><td class="crypt-down">REJECTED</td><?php
 											} 
 										else
 										{

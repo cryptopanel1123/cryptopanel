@@ -11,7 +11,7 @@
                 $row=mysqli_fetch_array($result);
                 if($row!=null){
                     $id=$row['id'];
-                    $json='{"BTC":1,"ETH":1,"BNB":1,"XRP":1,"SOL":1,"DOT":1,"ADA":1,"LUNA":1,"SHIB":1,"DOGE":1,"USDT":5000}';
+                    $json='{"BTC":0,"ETH":0,"BNB":0,"XRP":0,"SOL":0,"DOT":0,"ADA":0,"LUNA":0,"SHIB":0,"DOGE":0,"USDT":0}';
                     if(mysqli_query($con,"insert into portfolio(uid,assets) values('$id','$json');")){
                         // $subject="CONGRATS!";
                         // $message="YOU REGISTERED SUCCESSFULLY!";

@@ -17,6 +17,14 @@
     $id=$_SESSION['id'];
     $con=mysqli_connect('localhost','root','','cryptopanel');
     if($con){
+        $result=mysqli_query($con,"select * from user where id= '$id';");
+        $row=mysqli_fetch_array($result);
+        if($row!=null){
+            if($row['isRestricted']=="1")
+            { 
+                header("location:php/display.php?title=RESTRICTED USER!&msg=");
+            }
+        }    
         $result=mysqli_query($con,"select * from portfolio where uid='$id';");
         if($result!=null){
         $result=mysqli_fetch_array($result);

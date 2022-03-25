@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2022 at 03:57 PM
+-- Generation Time: Mar 25, 2022 at 04:56 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -43,50 +43,6 @@ INSERT INTO `admin` (`id`, `email`, `pass`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dashboard`
---
-
-CREATE TABLE `dashboard` (
-  `id` int(11) NOT NULL,
-  `coin_id` varchar(20) NOT NULL,
-  `symbol` varchar(10) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `image` text NOT NULL,
-  `current_price` int(19) NOT NULL,
-  `market_cap` int(19) NOT NULL,
-  `market_cap_rank` int(4) NOT NULL,
-  `fully_diluted_valuation` int(19) NOT NULL,
-  `total_volume` int(19) NOT NULL,
-  `high_24h` int(19) NOT NULL,
-  `low_24h` int(19) NOT NULL,
-  `price_change_24h` float(11,5) NOT NULL,
-  `price_change_percentage_24h` float(11,5) NOT NULL,
-  `market_cap_change_24h` int(19) NOT NULL,
-  `market_cap_change_percentage_24h` float(11,5) NOT NULL,
-  `circulating_supply` int(19) NOT NULL,
-  `total_supply` int(19) NOT NULL,
-  `max_supply` int(19) NOT NULL,
-  `ath` int(19) NOT NULL,
-  `ath_change_percentage` float(11,5) NOT NULL,
-  `ath_date` datetime NOT NULL,
-  `atl` float(11,5) NOT NULL,
-  `atl_change_percentage` float(11,5) NOT NULL,
-  `atl_date` datetime NOT NULL,
-  `roi` float(11,5) DEFAULT NULL,
-  `last_updated` datetime NOT NULL,
-  `sparkline_in_7d` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`sparkline_in_7d`)),
-  `price_change_percentage_14d_in_currency` float(19,18) NOT NULL,
-  `price_change_percentage_1h_in_currency` float(19,18) NOT NULL,
-  `price_change_percentage_1y_in_currency` float(19,18) NOT NULL,
-  `price_change_percentage_200d_in_currency` float(19,18) NOT NULL,
-  `price_change_percentage_24h_in_currency` float(19,18) NOT NULL,
-  `price_change_percentage_30d_in_currency` float(19,18) NOT NULL,
-  `price_change_percentage_7d_in_currency` float(19,18) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `news`
 --
 
@@ -94,7 +50,7 @@ CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `date` datetime DEFAULT current_timestamp(),
   `title` varchar(50) DEFAULT NULL,
-  `content` varchar(200) DEFAULT NULL
+  `content` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -102,12 +58,10 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `date`, `title`, `content`) VALUES
-(50, '2022-02-26 00:00:00', 'a', 'aa'),
-(51, '2022-02-26 00:00:00', 'aaa', 'a45yhy664h45h45h'),
-(52, '2022-02-26 09:05:02', 'aa', 'a'),
-(53, '2022-02-26 09:05:51', 'hdh', 'jdj'),
-(54, '2022-02-26 09:27:13', 'ergergtrb', 'erghsdbdfbsdbsdfgdsfgeb\r\nfg\r\nsgbgrb'),
-(55, '2022-02-26 09:27:26', 'ererwg', '12344566');
+(56, '2022-03-21 15:22:04', 'What is DeFi, how does it work?', 'It\'s an umbrella term for the part of the crypto universe that is geared toward building a new, internet-native financial system, using blockchains to replace traditional intermediaries and trust mechanisms.'),
+(57, '2022-03-21 15:23:14', 'Eco-friendly cryptos to watch out for this year.  ', 'With the exponential growth of assets, the crypto space has come a significant way from being considered environmentally dangerous, even if there is more to do.'),
+(58, '2022-03-21 15:25:51', 'Crypto Price Prediction: Huge Bitcoin Forecast Rev', 'One veteran commodities investor turned bitcoin bull has predicted the bitcoin price could soar to $200,000 in just five years—pointing to a \"compounding effect\" that could drive momentum'),
+(59, '2022-03-21 15:27:20', 'Biden’s Crypto Executive Order: Breakthrough Or Wo', 'The crypto world heaved a sigh of relief with President Biden’s new executive order on the industry. Those positive feelings are misplaced.');
 
 -- --------------------------------------------------------
 
@@ -132,8 +86,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `uid`, `coin`, `price`, `amount`, `total`, `buy_sell`, `placed_at`, `incline`) VALUES
-(112, 75, 'BTC', 300.00000000, 0.10000000, 30.00000000, 1, '2022-02-26 18:08:49', 2),
-(116, 75, 'BTC', 123456789.00000000, 12.00000000, 0.00000010, 0, '2022-02-26 20:17:10', 2);
+(112, 75, 'BTC', 300.00000000, 0.10000000, 30.00000000, 1, '2022-02-26 18:08:49', 2);
 
 -- --------------------------------------------------------
 
@@ -191,7 +144,7 @@ CREATE TABLE `portfolio` (
 --
 
 INSERT INTO `portfolio` (`id`, `uid`, `assets`) VALUES
-(17, 75, '{\"BTC\":0.8247185799999999,\"ETH\":1,\"BNB\":1.0241955,\"XRP\":1,\"SOL\":1,\"DOT\":1,\"ADA\":1,\"LUNA\":1,\"SHIB\":1,\"DOGE\":1,\"USDT\":455027}');
+(17, 75, '{\"BTC\":0,\"ETH\":0,\"BNB\":0,\"XRP\":0,\"SOL\":0,\"DOT\":0,\"ADA\":0,\"LUNA\":0,\"SHIB\":0,\"DOGE\":0,\"USDT\":262}');
 
 -- --------------------------------------------------------
 
@@ -237,7 +190,7 @@ CREATE TABLE `revenue_stats` (
 --
 
 INSERT INTO `revenue_stats` (`id`, `revenue`) VALUES
-(1, 500.03);
+(1, 800.03);
 
 -- --------------------------------------------------------
 
@@ -284,9 +237,8 @@ CREATE TABLE `withdraw` (
 
 INSERT INTO `withdraw` (`id`, `uid`, `amt`, `bnk_num`, `name`, `scode`, `country`, `status`, `time`) VALUES
 (44, 75, 4000, 123456789, 'DARK EXODUS', '12345678', 'India', 'APPROVED', '2022-02-26 09:26:37'),
-(45, 75, 5000, 123456789, 'Tanmau dffv', '123456789', 'India', 'CANCELED', '2022-02-26 10:34:11'),
-(46, 75, 400000, 123456789, 'Tanmay Trivedi', '12345678', 'India', 'CANCELED', '2022-02-26 17:56:25'),
-(47, 75, 5000, 123456789, 'Tanmay triv', '123456789', 'India', 'PENDING', '2022-02-26 18:31:30');
+(49, 75, 100, 123456789, 'asde weds', '12345678', 'United States', 'REJECTED', '2022-03-21 18:05:39'),
+(51, 75, 250, 123456789, 'DARK EXODUS', '12345678', 'United States', 'PENDING', '2022-03-21 20:11:09');
 
 --
 -- Indexes for dumped tables
@@ -296,12 +248,6 @@ INSERT INTO `withdraw` (`id`, `uid`, `amt`, `bnk_num`, `name`, `scode`, `country
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `dashboard`
---
-ALTER TABLE `dashboard`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -368,22 +314,16 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `dashboard`
---
-ALTER TABLE `dashboard`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `orders_history`
@@ -395,19 +335,19 @@ ALTER TABLE `orders_history`
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `withdraw`
 --
 ALTER TABLE `withdraw`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Constraints for dumped tables
