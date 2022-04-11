@@ -57,7 +57,7 @@ function checkbuyamount(){
 
     if(buyprice.value!='' && buyamount.value!=''){
         if(buyprice.value>0 && buyamount.value>0){
-            buytotal.value=(buyamount.value/buyprice.value);
+            buytotal.value=(buyamount.value/buyprice.value).toFixed(8);
         }else{
             buytotal.value='';
         }
@@ -66,7 +66,7 @@ function checkbuyamount(){
     }
     if(sellprice.value!='' && sellamount.value!=''){
         if(sellprice.value>0 && sellamount.value>0){
-            selltotal.value=(sellamount.value*sellprice.value);
+            selltotal.value=(sellamount.value*sellprice.value).toFixed(8);
         }else{
             selltotal.value='';
         }
