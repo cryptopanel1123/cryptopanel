@@ -22,7 +22,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Cryptorio - Cryptocurrency Trading Dashboard</title>
+	<title>Cryptopanel - Cryptocurrency Trading Dashboard</title>
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -226,28 +226,28 @@
 							  	<div class="tab-pane fade show active" id="v-pills-zilliqua-btc-deposit" role="tabpanel" aria-labelledby="v-pills-zilliqua-btc-deposit-tab">
 							  		<form method="POST" action="php/pay.php" class="deposit-form" id="gpayform">
 							  			<div class="crypt-radio-boxed">
-								  			<input type="radio" value="50000" name="payment-amount" id="payment-btc-amount1" class="payment-amount">
-								  			<label for="payment-btc-amount1">$50000</label>
+								  			<input type="radio" value="5000" name="payment-amount" id="payment-btc-amount1" class="payment-amount">
+								  			<label for="payment-btc-amount1">$5000</label>
 								  			<div class="check"></div>
 							  			</div>
 							  			<div class="crypt-radio-boxed">
-								  			<input type="radio" value="25000" name="payment-amount" id="payment-btc-amount2" class="payment-amount"><label for="payment-btc-amount2">$25000</label>
+								  			<input type="radio" value="2500" name="payment-amount" id="payment-btc-amount2" class="payment-amount"><label for="payment-btc-amount2">$2500</label>
 								  			<div class="check"></div>
 							  			</div>
 							  			<div class="crypt-radio-boxed">
-							  				<input type="radio" value="10000" name="payment-amount" id="payment-btc-amount3" class="payment-amount"><label for="payment-btc-amount3">$10000</label>
+							  				<input type="radio" value="1000" name="payment-amount" id="payment-btc-amount3" class="payment-amount"><label for="payment-btc-amount3">$1000</label>
 								  			<div class="check"></div>
 						  				</div>
 							  			<div class="crypt-radio-boxed">
-							  				<input type="radio" value="5000" name="payment-amount" id="payment-btc-amount4" class="payment-amount"><label for="payment-btc-amount4">$5000 </label>
+							  				<input type="radio" value="500" name="payment-amount" id="payment-btc-amount4" class="payment-amount"><label for="payment-btc-amount4">$500 </label>
 								  			<div class="check"></div>
 						  				</div>
 							  			<div class="crypt-radio-boxed">
-							  				<input type="radio" value="2000" name="payment-amount" id="payment-btc-amount5" class="payment-amount"><label for="payment-btc-amount5">$2000 </label>
+							  				<input type="radio" value="200" name="payment-amount" id="payment-btc-amount5" class="payment-amount"><label for="payment-btc-amount5">$200 </label>
 								  			<div class="check"></div>
 						  				</div>
 							  			<div class="crypt-radio-boxed">
-							  				<input type="radio" value="1000" name="payment-amount" id="payment-btc-amount6" class="payment-amount"><label for="payment-btc-amount6">$1000 </label>
+							  				<input type="radio" value="100" name="payment-amount" id="payment-btc-amount6" class="payment-amount"><label for="payment-btc-amount6">$100 </label>
 								  			<div class="check"></div>
 						  				</div>
 						  				<div class="form-group mt-2">

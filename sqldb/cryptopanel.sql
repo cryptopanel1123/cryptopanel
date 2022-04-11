@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2022 at 08:46 AM
+-- Generation Time: Mar 25, 2022 at 08:15 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -87,8 +87,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `uid`, `coin`, `price`, `amount`, `total`, `buy_sell`, `placed_at`, `incline`) VALUES
-(112, 75, 'BTC', 300.00000000, 0.10000000, 30.00000000, 1, '2022-02-26 18:08:49', 2),
-(118, 75, 'BTC', 20000.00000000, 234.00000000, 0.01170000, 0, '2022-03-26 19:41:27', 2);
+(112, 75, 'BTC', 300.00000000, 0.10000000, 30.00000000, 1, '2022-02-26 18:08:49', 2);
 
 -- --------------------------------------------------------
 
@@ -146,7 +145,7 @@ CREATE TABLE `portfolio` (
 --
 
 INSERT INTO `portfolio` (`id`, `uid`, `assets`) VALUES
-(17, 75, '{\"BTC\":0,\"ETH\":0,\"BNB\":0,\"XRP\":0,\"SOL\":0,\"DOT\":0,\"ADA\":0,\"LUNA\":0,\"SHIB\":0,\"DOGE\":0,\"USDT\":28}');
+(17, 75, '{\"BTC\":0,\"ETH\":0,\"BNB\":0,\"XRP\":0,\"SOL\":0,\"DOT\":0,\"ADA\":0,\"LUNA\":0,\"SHIB\":0,\"DOGE\":0,\"USDT\":262}');
 
 -- --------------------------------------------------------
 
@@ -328,7 +327,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `orders_history`
